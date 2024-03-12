@@ -3,7 +3,6 @@
 
 <head>
   <title>Buy/Sell Listing Website</title>
-
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta name="viewport" content="width=device-width, initial-scale=1.0" >
@@ -22,15 +21,64 @@
   <nav class="blue darken-2">
     <div class="nav-wrapper container">
       <a href="/" class="brand-logo">Marketplace</a>
-      <li><a href="/favorites">favorites</a></li>
-      <li><a href="/login">login</a></li>
-      <li><a href="/register">register</a></li>
+      <ul id="nav-mobile" class="right">
+      <li><a href="/favorites">Favorites</a></li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/register">Register</a></li>
+      </ul>
     </div>
   </nav>
 <div class="container">
-  <h2>Main Feed</h2>
-</div>
-
+  <div id="featured-items"></div>
+  <h2 class="header center-align blue-text text-darken-2">Main Feed</h2>
+    <!-- Sample Items for the Main Feed -->
+    <div class="row">
+      <!-- Sample Item 1 -->
+      <div class="col s12 m4">
+        <div class="card">
+          <div class="card-image">
+            <img src="https://via.placeholder.com/400x250">
+            <span class="card-title">Item One</span>
+          </div>
+          <div class="card-content">
+            <p>Placeholder.</p>
+          </div>
+          <div class="card-action">
+            <a href="#">More Details</a>
+          </div>
+        </div>
+      </div>
+      <!-- Sample Item 2 -->
+      <div class="col s12 m4">
+        <div class="card">
+          <div class="card-image">
+            <img src="https://via.placeholder.com/400x250">
+            <span class="card-title">Item Two</span>
+          </div>
+          <div class="card-content">
+            <p>Placeholder.</p>
+          </div>
+          <div class="card-action">
+            <a href="#">More Details</a>
+          </div>
+        </div>
+      </div>
+      <!-- Sample Item 3 -->
+      <div class="col s12 m4">
+        <div class="card">
+          <div class="card-image">
+            <img src="https://m.media-amazon.com/images/I/61CZEo8EzrL._AC_UL400_.jpg">
+            <span class="card-title">Item Three</span>
+          </div>
+          <div class="card-content">
+            <p>Placeholder.</p>
+          </div>
+          <div class="card-action">
+            <a href="#">More Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
-
 </html>
