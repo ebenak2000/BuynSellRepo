@@ -12,8 +12,9 @@ router.post("/", (req, res) => {
   const firstName = req.body.input_first;
   const lastName = req.body.input_last
   const email = req.body.email;
+  const phone = req.body.phone;
   const password = req.body.password;
-
+  console.log(req.body);
   // Checks if the inputs are blank
   if (firstName === '' || lastName === '' || email === '' || password === '') {
       const templateVars = {error: 'Empty'};
@@ -31,18 +32,16 @@ router.post("/", (req, res) => {
                   res.render('register', templateVars);
               } else {
                   // Creates a new user in the users database
-                  const updateQuery = `INSERT INTO users (firstName, lastName, email, password)
-                      VALUES ($1, $2, $3) RETURNING *`;
-                  const values = [firstName, lastName, email, password];
-
+                  const updateQuery = `INSERT INTO users (firstName, lastName, email, phone, password)
+                      VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+                  const values = [firstName, lastName, email, phone, password];
+                  req.session['user_id'] = req.body.email;
+                  const templateVars = {currentUser: req.session['user_id']};
+                  res.redirect('/login');
                   return db.query(updateQuery, values);
               }
-          })
-          .then(() => {
-              // Set session user_id and redirect
-              req.session['user_id'] = req.body.email;
-              const templateVars = {currentUser: req.session['user_id']};
-              res.redirect('/');
+
+
           })
           .catch(err => {
               console.error('Error:', err);
