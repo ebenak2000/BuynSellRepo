@@ -1,15 +1,17 @@
+<!-- favorite.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User's Favorite Product</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Favorites</title>
 </head>
 <body>
-  <button id="fetch-favorites">Fetch Favorites</button>
-  <ul id="favorites"></ul>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="/scripts/favorite.js"></script>
+    <h1>User Favorites</h1>
+    <ul>
+        <% data.forEach(item => { %>
+            <li><%= item.title %> - <%= item.price %></li>
+        <% }) %>
+    </ul>
 </body>
 </html>

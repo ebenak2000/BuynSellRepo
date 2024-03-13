@@ -1,4 +1,4 @@
-$(document).ready(() => {
+/* $(document).ready(() => {
   $('#fetch-favorites').on('click', () => {
     const userID = 1; // Replace with the actual user ID or fetch it dynamically from your application
     $.ajax({
@@ -18,3 +18,4 @@ $(document).ready(() => {
     });
   });
 });
+ */
