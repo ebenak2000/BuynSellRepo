@@ -1,0 +1,9 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #96c8b7;
+  font-family: sans-serif;
+}/*# sourceMappingURL=favorite.css.map */

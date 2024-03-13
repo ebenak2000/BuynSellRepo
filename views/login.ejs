@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -17,5 +17,53 @@
       <br>
       <button type="submit">Login</button>
   </form>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="./styles/login.css">
+    <title>Login</title>
+</head>
+<body>
+
+   <div class="wrapper">
+    <div class="login_box">
+        <div class="login-header">
+            <span>Login</span>
+        </div>
+        <form action="/login" method="POST">
+        <div class="input_box">
+          <input type="email" id="email" name="email" required>
+            <label for="user" class="label">Email</label>
+            <i class="bx bx-user icon"></i>
+        </div>
+        <div class="input_box">
+          <input type="password" id="password" name="password" required>
+            <label for="pass" class="label">Password</label>
+            <i class="bx bx-lock-alt icon"></i>
+        </div>
+      </form>
+        <!-- div class="remember-forgot">
+            <div class="remember-me">
+                <input type="checkbox" id="remember">
+                <label for="remember"> Remember me</label>
+            </div>
+        </div> -->
+        <div class="input_box">
+            <input type="submit" class="input-submit" value="submit">
+        </div>
+        <div class="register">
+            <span>Don't have an account? <a href="/register">Register</a></span>
+        </div>
+    </div>
+   </div>
+
 </body>
 </html>
