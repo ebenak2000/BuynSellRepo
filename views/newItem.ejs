@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>New Posting</title>
+
+  <meta charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+
+  <!--FONTS-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/newItem.css"/>
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+  
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+</head>
+
+<body>
+  <h1>Create a listing</h1>
+  <div class="formBack">
+  <form method="post" action="/newItem">
+    <label for="itemTitle">What are you selling?
+    <textarea name="itemTitle" rows=1 required></textarea>
+  </label>
+    <label for="productType">Choose a category
+    <select id="category" name="category">
+      <option value="Electronics">Electronics</option>
+      <option value="Clothing">Clothing</option>
+      <option value="Books">Books</option>
+    </select>
+  </label>
+    <label for="description">Describe it!
+    <textarea  name="itemDescription" required></textarea>
+  </label>
+    <label for="price" class="price">Price:
+    <textarea name="price" required></textarea>
+  </label>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</body>
+
+</html>
