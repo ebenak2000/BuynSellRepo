@@ -91,7 +91,7 @@ app.post('/', (req, res) => {
 
   db.query(sqlQuery, values)
       .then(data => {
-          res.render('index', { products: data.rows, minPrice, maxPrice });
+        res.render('index', { products: data.rows, minPrice, maxPrice, user: req.session.userid });
       })
       .catch(e => {
           console.log(e);
