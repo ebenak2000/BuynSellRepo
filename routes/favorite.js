@@ -1,25 +1,28 @@
 const express = require('express');
 const router  = express.Router();
+const db = require('../db/connection');
 
 
-/*
-router.get('/', (req, res) => {
-  res.render('favorite');
-});
- */
+router.get('/', (req, res, next) => {
+  const userID = req.session.user_id;
+  const sqlQuery = `
+    SELECT p.itemID, p.title, p.description, p.price, p.status, p.img_url,
+           CASE WHEN p.status THEN 'Available' ELSE 'Not Available' END AS availability
+    FROM FAVORITES f
+    JOIN PRODUCT p ON f.itemID = p.itemID
+    WHERE f.userID = $1
+    LIMIT 10`;
+  const values = [userID];
+  //values = 1;
+  db.query(sqlQuery, values)
+  .then(data => {
+    res.render('favorite', { data: data.rows, user: userID});
 
-router.get('/', async (req, res) => {
-  try {
-    /* const userID = req.query.userID; */
-    const userID = 1;
-    const query = 'SELECT * FROM product WHERE itemID IN (SELECT itemID FROM favorites WHERE userID = $1)';
-    const { rows } = await pool.query(query, [userID]);
-    res.json({ favorites: rows });
-  } catch (error) {
-    console.error('Error fetching favorites:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-  res.render('favorite');
+  })
+  .catch(e => {
+    console.log(e);
+    res.status(500).send("An error occurred while fetching favorites.");
+  });
 });
 
 
@@ -28,12 +31,3 @@ router.get('/', async (req, res) => {
 module.exports = router;
 
 
-
-//SELECT p.itemID, p.title, p.description, p.price
-//FROM FAVORITES f
-//JOIN PRODUCT p ON f.itemID = p.itemID
-//WHERE f.userID = [user_id];
-
-
-//INSERT INTO FAVORITES (userID, itemID)
-//VALUES (user_id_value, item_id_value);

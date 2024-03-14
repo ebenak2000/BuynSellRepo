@@ -1,15 +1,54 @@
+
+ <!-- favorite.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User's Favorite Product</title>
-</head>
-<body>
-  <button id="fetch-favorites">Fetch Favorites</button>
-  <ul id="favorites"></ul>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" href="./styles/favorite.css">
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="/scripts/favorite.js"></script>
+     <!-- Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+    <title>User Favorites</title>
+</head>
+<header><nav class="navbar navbar-expand-md navbar-dark bg-success fixed-top">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/login">Login</a></li>
+    <li><a href="/register">Register</a></li>
+    <li><a href="/logout">Logout</a></li>
+
+  </ul></header>
+
+
+</nav>
+<body>
+
+  <h1>User Favorites</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% data.forEach(item => { %>
+              <tr>
+                  <td><%= item.title %></td>
+                  <td><%= item.description %></td>
+                  <td><%= item.price %></td>
+                  <td><img src="<%= item.img_url %>" alt="<%= item.title %>"></td>
+                  <td><%= item.availability %></td> <!-- Display availability -->
+              </tr>
+          <% }) %>
+      </tbody>
+    </table>
 </body>
 </html>
