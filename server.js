@@ -6,6 +6,9 @@ const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 const cookieSession = require("cookie-session");
+const db = require('./db/connection');
+const bodyParser = require('body-parser');
+
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -26,6 +29,7 @@ app.use(
   })
 );
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cookieSession({
     name: "userid",
@@ -63,9 +67,24 @@ app.use('/favorite',userFavorite);
 
 app.get('/', (req, res) => {
   console.log(req.session);
-  const templateVars = {user: req.session.userid}
-  res.render('index', templateVars);
+  const templateVars = { user: req.session.userid };
+  const sqlQuery = 'SELECT itemID, title, description, price, status, img_url FROM PRODUCT;';
+
+  db.query(sqlQuery)
+      .then(data => {
+          templateVars.products = data.rows; // Assign data to templateVars.products
+          res.render('index', templateVars);
+      })
+      .catch(e => {
+          console.log(e);
+          res.status(500).send("An error occurred while fetching products.");
+      });
 });
+
+
+
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
