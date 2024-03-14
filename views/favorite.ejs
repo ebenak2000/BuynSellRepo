@@ -53,18 +53,20 @@
                 <th>Description</th>
                 <th>Price</th>
                 <th>Image</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
-            <% data.forEach(item => { %>
-                <tr>
-                    <td><%= item.title %></td>
-                    <td><%= item.description %></td>
-                    <td><%= item.price %></td>
-                    <td><img src="<%= item.img_url %>" alt="<%= item.title %>"></td>
-                </tr>
-            <% }) %>
-        </tbody>
+          <% data.forEach(item => { %>
+              <tr>
+                  <td><%= item.title %></td>
+                  <td><%= item.description %></td>
+                  <td><%= item.price %></td>
+                  <td><img src="<%= item.img_url %>" alt="<%= item.title %>"></td>
+                  <td><%= item.availability %></td> <!-- Display availability -->
+              </tr>
+          <% }) %>
+      </tbody>
     </table>
 </body>
 </html>

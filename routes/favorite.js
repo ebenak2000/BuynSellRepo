@@ -9,11 +9,13 @@ const db = require('../db/connection');
 
 router.get('/', (req, res, next) => {
   console.log(req.params.id);
-  const sqlQuery = `SELECT p.itemID, p.title, p.description, p.price, p.status, p.img_url
-                    FROM FAVORITES f
-                    JOIN PRODUCT p ON f.itemID = p.itemID
-                    WHERE f.userID = $1
-                    LIMIT 10`;
+  const sqlQuery = `
+    SELECT p.itemID, p.title, p.description, p.price, p.status, p.img_url,
+           CASE WHEN p.status THEN 'Available' ELSE 'Not Available' END AS availability
+    FROM FAVORITES f
+    JOIN PRODUCT p ON f.itemID = p.itemID
+    WHERE f.userID = $1
+    LIMIT 10`;
   const values = [req.session['user_id']];
   console.log("values");
   console.log(values);
