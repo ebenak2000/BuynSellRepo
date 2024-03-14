@@ -82,7 +82,22 @@ app.get('/', (req, res) => {
 });
 
 
+app.post('/', (req, res) => {
+  const minPrice = req.body.minPrice || 0; // Default to 0 if not provided
+  const maxPrice = req.body.maxPrice || Number.MAX_SAFE_INTEGER; // Default to max safe integer if not provided
 
+  const sqlQuery = 'SELECT itemID, title, description, price, status, img_url FROM PRODUCT WHERE price >= $1 AND price <= $2;';
+  const values = [minPrice, maxPrice];
+
+  db.query(sqlQuery, values)
+      .then(data => {
+          res.render('index', { products: data.rows, minPrice, maxPrice });
+      })
+      .catch(e => {
+          console.log(e);
+          res.status(500).send("An error occurred while fetching products.");
+      });
+});
 
 
 

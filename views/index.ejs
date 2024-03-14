@@ -26,6 +26,15 @@
 
 <div class="container">
   <h1>Product List</h1>
+  <form action="/" method="POST">
+    <label for="minPrice">Minimum Price:</label>
+    <input type="number" id="minPrice" name="minPrice" placeholder="Minimum Price">
+
+    <label for="maxPrice">Maximum Price:</label>
+    <input type="number" id="maxPrice" name="maxPrice" placeholder="Maximum Price">
+
+    <button type="submit">Filter</button>
+</form>
 
   <table>
     <thead>
