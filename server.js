@@ -44,6 +44,7 @@ const userRegister = require('./routes/register');
 const userLogout = require('./routes/logout');
 const newItem = require('./routes/newItem');
 const deleteItem = require('./routes/deleteItem');
+const markSold = require('./routes/markSold');
 
 
 // Mount all resource routes
@@ -57,6 +58,7 @@ app.use('/register',userRegister);
 app.use('/logout', userLogout);
 app.use('/newItem', newItem);
 app.use('/deleteItem', deleteItem);
+app.use('/markSold', markSold)
 // Note: mount other resources here, using the same pattern above
 
 // Home page
