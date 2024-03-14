@@ -26,8 +26,9 @@ CREATE TABLE PRODUCT(
   typeID INTEGER,
   title VARCHAR(255),
   description TEXT,
-  price INTEGER,
+  price MONEY,
   status BOOLEAN,
+  img_url VARCHAR(255),
   FOREIGN KEY (userID) REFERENCES USERS(userID),
   FOREIGN KEY (typeID) REFERENCES PRODUCTTYPE(typeID)
 );
