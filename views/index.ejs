@@ -15,9 +15,13 @@
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
-</head>
 
+</head>
+<header>
+
+</header>
 <body>
+<<<<<<< HEAD
   <%- include('./partials/_header') %>
   <nav class="blue darken-2">
     <div class="nav-wrapper container">
@@ -81,6 +85,47 @@
       </div>
     </div>
   </div>
+=======
+
+
+<div class="container">
+  <h1>Product List</h1>
+  <form action="/" method="POST">
+    <label for="minPrice">Minimum Price:</label>
+    <input type="number" id="minPrice" name="minPrice" placeholder="Minimum Price">
+
+    <label for="maxPrice">Maximum Price:</label>
+    <input type="number" id="maxPrice" name="maxPrice" placeholder="Maximum Price">
+
+    <button type="submit">Filter</button>
+</form>
+
+  <table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% products.forEach(product => { %>
+            <tr>
+                <td><%= product.title %></td>
+                <td><%= product.description %></td>
+                <td><%= product.price %></td>
+                <td><%= product.status ? 'Available' : 'Not Available' %></td>
+                <td><img src="<%= product.img_url %>" alt="<%= product.title %>"></td>
+            </tr>
+        <% }); %>
+    </tbody>
+
+    </table>
+</div>
+
+>>>>>>> 9609a6f8b2fc29e802cf868e51d52fb8be5f21a1
 </body>
 <<<<<<< HEAD
 </html>
