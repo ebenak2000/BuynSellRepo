@@ -12,8 +12,16 @@ router.post('/', (req, res) => {
   `
 
   const values = [req.body.itemID]
-})
 
+  return db.query(queryString, values)
+  .then( res => {
+    res.JSON(res.rows)
+})
+.catch(error => {
+  console.error('Error', error);
+res.status(500).send('Error');
+});
+})
 
 
 
