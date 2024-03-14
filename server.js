@@ -42,6 +42,8 @@ const usersRoutes = require('./routes/users');
 const userLogin = require('./routes/login');
 const userRegister = require('./routes/register');
 const userLogout = require('./routes/logout');
+const newItem = require('./routes/newItem');
+const deleteItem = require('./routes/deleteItem');
 
 
 // Mount all resource routes
@@ -53,6 +55,8 @@ app.use('/users', usersRoutes);
 app.use('/login', userLogin);
 app.use('/register',userRegister);
 app.use('/logout', userLogout);
+app.use('/newItem', newItem);
+app.use('/deleteItem', deleteItem);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
