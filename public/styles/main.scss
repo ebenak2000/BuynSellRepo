@@ -25,3 +25,15 @@ body {
 #nav-mobile li a.btn {
     margin-top: 18px;
 }
+
+tr.sold-out {
+  background-color: #f2f2f2; /* Change the background color to gray */
+}
+
+nav {
+  z-index: 1000;
+}
+
+img .product-img {
+  z-index: 1;
+}

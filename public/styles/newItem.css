@@ -1,0 +1,25 @@
+form {
+  color: white !important;
+  font-weight: 500;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 400px;
+}
+
+div.formBack {
+  background-image: url("https://img.freepik.com/premium-vector/fresh-fruits-handmade-background-colorful-vector-wallpaper-seamless-pattern-with-watermelon_579837-164.jpg");
+  border-radius: 8px;
+  width: 400px;
+  height: 500px;
+}
+
+textarea.newForm {
+  resize: none;
+}
+textarea.newFormPrice {
+  width: 100px;
+  resize: none;
+}

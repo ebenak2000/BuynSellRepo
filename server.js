@@ -9,6 +9,8 @@ const db = require('./db/connection');
 const bodyParser = require('body-parser');
 const messageRoutes = require('./routes/messages');
 
+
+
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -46,6 +48,11 @@ const userLogin = require('./routes/login');
 const userRegister = require('./routes/register');
 const userLogout = require('./routes/logout');
 const userFavorite = require('./routes/favorite');
+const newItem = require('./routes/newItem');
+const deleteItem = require('./routes/deleteItem');
+const markSold = require('./routes/markSold');
+const favorite2 = require('./routes/favorite2');
+
 
 
 // Mount all resource routes
@@ -57,8 +64,15 @@ app.use('/users', usersRoutes);
 app.use('/login', userLogin);
 app.use('/register',userRegister);
 app.use('/logout', userLogout);
-app.use('/favorite',userFavorite);
+
 app.use('/api/messages', messageRoutes);
+
+app.use('/favorite', userFavorite);
+app.use('/newItem', newItem);
+app.use('/delete', deleteItem);
+app.use('/sold', markSold);
+app.use('/favorite2', favorite2);
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -66,20 +80,24 @@ app.use('/api/messages', messageRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  console.log(req.session);
-  const templateVars = { user: req.session.userid };
-  const sqlQuery = 'SELECT itemID, title, description, price, status, img_url FROM PRODUCT;';
-console.log("Hello");
+
+  // console.log(req.session, "REQ SESSION");
+  const templateVars = { user: req.session.user_id, name: req.session.user_name };
+
+  console.log(templateVars, req.session);
+  // console.log(templateVars, "TEMPLATE VARSSSS")
+  const sqlQuery = 'SELECT userID, itemID, title, description, price, status, img_url FROM PRODUCT;';
+
   db.query(sqlQuery)
       .then(data => {
           templateVars.products = data.rows; // Assign data to templateVars.products
-          console.log('templateVars', templateVars);
           res.render('index', templateVars);
       })
       .catch(e => {
           console.log(e);
           res.status(500).send("An error occurred while fetching products.");
       });
+
 });
 
 
@@ -98,6 +116,35 @@ app.post('/', (req, res) => {
           console.log(e);
           res.status(500).send("An error occurred while fetching products.");
       });
+});
+
+
+
+
+
+// Route to handle adding an item to favorites
+app.post('/add-to-favorites', (req, res) => {
+  const itemId = req.body.itemId;
+  const userId = req.session.userId;
+
+  // Validate itemId
+  if (!Number.isInteger(itemId)) {
+    console.error('Invalid itemId:', itemId);
+    res.status(400).send('Invalid item ID.');
+    return;
+  }
+
+  // Execute the SQL query to insert the item ID into the FAVORITES table
+  db.query('INSERT INTO FAVORITES (userID, itemID) VALUES ($1, $2)', [userId, itemId], (error, results) => {
+    if (error) {
+      // Handle database insertion error
+      console.error('Error adding item to favorites:', error);
+      res.status(500).send('An error occurred while adding the item to favorites.');
+    } else {
+      // Send a success response back to the client
+      res.send('Item added to favorites successfully.');
+    }
+  });
 });
 
 

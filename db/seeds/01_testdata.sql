@@ -11,10 +11,10 @@ VALUES ('Electronics', 'Electronic devices and gadgets'),
        ('Books', 'Books of various genres');
 
 -- Products
-INSERT INTO PRODUCT (userID, typeID, title, description, price, status)
-VALUES (1, 1, 'Smartphone', 'Brand new smartphone with advanced features', 999, true),
-       (2, 2, 'T-shirt', 'Comfortable cotton t-shirt in assorted colors', 20, true),
-       (3, 3, 'Sci-fi Novel', 'Exciting science fiction novel by a renowned author', 15, true);
+INSERT INTO PRODUCT (userID, typeID, title, description, price, status, img_url)
+VALUES (1, 1, 'Smartphone', 'Brand new smartphone with advanced features', 999, true, 'https://i.imgur.com/Eln8TZJ.png'),
+       (2, 2, 'T-shirt', 'Comfortable cotton t-shirt in assorted colors', 20, true, 'https://i.imgur.com/KGNXSYM.png'),
+       (3, 3, 'Sci-fi Novel', 'Exciting science fiction novel by a renowned author', 15, true, 'https://i.imgur.com/bbSo5qb.png');
 
 -- Featured Items
 INSERT INTO FEATURED (itemID, dateListed)

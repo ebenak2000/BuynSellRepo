@@ -4,7 +4,7 @@ const db = require('../db/connection');
 
 
 router.get('/', (req, res, next) => {
-  console.log(req.params.id)
+  // console.log(req.params.id)
   res.render('register')
 })
 
@@ -14,7 +14,6 @@ router.post("/", (req, res) => {
   const email = req.body.email;
   const phone = req.body.phone;
   const password = req.body.password;
-  console.log(req.body);
   // Checks if the inputs are blank
   if (firstName === '' || lastName === '' || email === '' || password === '') {
       const templateVars = {error: 'Empty'};
