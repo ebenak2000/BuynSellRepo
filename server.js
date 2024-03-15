@@ -1,4 +1,3 @@
-// load .env data into process.env
 require('dotenv').config();
 
 // Web server config
@@ -6,6 +5,9 @@ const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 const cookieSession = require("cookie-session");
+const db = require('./db/connection');
+const bodyParser = require('body-parser');
+const messageRoutes = require('./routes/messages');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -26,6 +28,7 @@ app.use(
   })
 );
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cookieSession({
     name: "userid",
@@ -42,6 +45,7 @@ const usersRoutes = require('./routes/users');
 const userLogin = require('./routes/login');
 const userRegister = require('./routes/register');
 const userLogout = require('./routes/logout');
+const userFavorite = require('./routes/favorite');
 
 
 // Mount all resource routes
@@ -53,20 +57,50 @@ app.use('/users', usersRoutes);
 app.use('/login', userLogin);
 app.use('/register',userRegister);
 app.use('/logout', userLogout);
+app.use('/favorite',userFavorite);
+app.use('/api/messages', messageRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-app.get('/', (req, res) => {
-  res.render('index', { products: someProductsArray });
-});
 
 app.get('/', (req, res) => {
   console.log(req.session);
-  const templateVars = {user: req.session.userid}
-  res.render('index', templateVars);
+  const templateVars = { user: req.session.userid };
+  const sqlQuery = 'SELECT itemID, title, description, price, status, img_url FROM PRODUCT;';
+console.log("Hello");
+  db.query(sqlQuery)
+      .then(data => {
+          templateVars.products = data.rows; // Assign data to templateVars.products
+          console.log('templateVars', templateVars);
+          res.render('index', templateVars);
+      })
+      .catch(e => {
+          console.log(e);
+          res.status(500).send("An error occurred while fetching products.");
+      });
 });
+
+
+app.post('/', (req, res) => {
+  const minPrice = req.body.minPrice || 0; // Default to 0 if not provided
+  const maxPrice = req.body.maxPrice || Number.MAX_SAFE_INTEGER; // Default to max safe integer if not provided
+
+  const sqlQuery = 'SELECT itemID, title, description, price, status, img_url FROM PRODUCT WHERE price >= $1 AND price <= $2;';
+  const values = [minPrice, maxPrice];
+
+  db.query(sqlQuery, values)
+      .then(data => {
+        res.render('index', { products: data.rows, minPrice, maxPrice, user: req.session.userid });
+      })
+      .catch(e => {
+          console.log(e);
+          res.status(500).send("An error occurred while fetching products.");
+      });
+});
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

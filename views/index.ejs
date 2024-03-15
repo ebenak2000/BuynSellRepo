@@ -3,6 +3,7 @@
 
 <head>
   <title>Buy/Sell Listing Website</title>
+
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta name="viewport" content="width=device-width, initial-scale=1.0" >
@@ -17,79 +18,15 @@
   <script defer src="/scripts/app.js"></script>
 
 </head>
-<header>
 
-</header>
 <body>
-<<<<<<< HEAD
-  <%- include('./partials/_header') %>
-  <nav class="blue darken-2">
-    <div class="nav-wrapper container">
-      <a href="/" class="brand-logo">Marketplace</a>
-      <ul id="nav-mobile" class="right">
-      <li><a href="/favorites">Favorites</a></li>
-      <li><a href="/login">Login</a></li>
-      <li><a href="/register">Register</a></li>
-      </ul>
-    </div>
-  </nav>
-<div class="container">
-  <div id="featured-items"></div>
-  <h2 class="header center-align blue-text text-darken-2">Main Feed</h2>
-    <!-- Sample Items for the Main Feed -->
-    <div class="row">
-      <!-- Sample Item 1 -->
-      <div class="col s12 m4">
-        <div class="card">
-          <div class="card-image">
-            <img src="https://via.placeholder.com/400x250">
-            <span class="card-title">Item One</span>
-          </div>
-          <div class="card-content">
-            <p>Placeholder.</p>
-          </div>
-          <div class="card-action">
-            <a href="#">More Details</a>
-          </div>
-        </div>
-      </div>
-      <!-- Sample Item 2 -->
-      <div class="col s12 m4">
-        <div class="card">
-          <div class="card-image">
-            <img src="https://via.placeholder.com/400x250">
-            <span class="card-title">Item Two</span>
-          </div>
-          <div class="card-content">
-            <p>Placeholder.</p>
-          </div>
-          <div class="card-action">
-            <a href="#">More Details</a>
-          </div>
-        </div>
-      </div>
-      <!-- Sample Item 3 -->
-      <div class="col s12 m4">
-        <div class="card">
-          <div class="card-image">
-            <img src="https://m.media-amazon.com/images/I/61CZEo8EzrL._AC_UL400_.jpg">
-            <span class="card-title">Item Three</span>
-          </div>
-          <div class="card-content">
-            <p>Placeholder.</p>
-          </div>
-          <div class="card-action">
-            <a href="#">More Details</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-=======
-
+  <%- include('partials/_header') %>
 
 <div class="container">
   <h1>Product List</h1>
+  <div>
+    <span id="messagebtn"></span>
+  </div>
   <form action="/" method="POST">
     <label for="minPrice">Minimum Price:</label>
     <input type="number" id="minPrice" name="minPrice" placeholder="Minimum Price">
@@ -102,12 +39,13 @@
 
   <table>
     <thead>
-        <tr>
+        <tr> 
             <th>Title</th>
             <th>Description</th>
             <th>Price</th>
             <th>Status</th>
             <th>Image</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -118,6 +56,9 @@
                 <td><%= product.price %></td>
                 <td><%= product.status ? 'Available' : 'Not Available' %></td>
                 <td><img src="<%= product.img_url %>" alt="<%= product.title %>"></td>
+                <td>
+                  <button class="message-admin-btn" id="<%= product.itemid %>">Message Admin</button>
+                </td>
             </tr>
         <% }); %>
     </tbody>
@@ -125,11 +66,6 @@
     </table>
 </div>
 
->>>>>>> 9609a6f8b2fc29e802cf868e51d52fb8be5f21a1
 </body>
-<<<<<<< HEAD
-</html>
-=======
 
 </html>
->>>>>>> 8b543686cb61bdac43a328539273e03422fece0d
