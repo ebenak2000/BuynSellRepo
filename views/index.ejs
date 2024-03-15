@@ -45,12 +45,15 @@
     </thead>
     <tbody>
         <% products.forEach(product => { %>
-            <tr>
+            <tr <% if (!product.status) { %> class="sold-out" <% } %>>
                 <td><%= product.title %></td>
                 <td><%= product.description %></td>
                 <td><%= product.price %></td>
                 <td><%= product.status ? 'Available' : 'Not Available' %></td>
-                <td><img src="<%= product.img_url %>" alt="<%= product.title %>"></td>
+                <td <% if (!product.status) { %> class="sold-out-image" <% } %>>
+                  <img src="<%= product.img_url %>" alt="<%= product.title %>">
+                  
+                </td>
                 <td><form action="/delete" method="POST">
                   <input type="hidden" name="productID" value="<%= product.itemid %>">
                   <button type="submit">Delete</button>

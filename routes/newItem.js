@@ -14,8 +14,8 @@ router.get('/', (req, res) => {
 // })
 router.post('/', (req, res) => {
   const newItem = req.body;
-  console.log(req.body);
-  console.log(req.session.user_id);
+  // console.log(req.body);
+  // console.log(req.session.user_id);
   //req.session.user_id === users id in db
 
   // userID INTEGER,
@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
    `
 
    const values = [req.session.user_id, req.body.category, req.body.itemTitle, req.body.itemDescription, req.body.price, true, req.body.img_url]
-   console.log("BOOTYCHEEKS");
+  
    return db.query(queryString, values)
    .then(res => res.rows)
    .then(res.redirect('/'));

@@ -36,8 +36,8 @@ router.post('/', (req, res, next) => {
   getUser(email, password)
     .then(user => {
       if(user && user.password === password){
-        console.log("userid");
-        console.log(user.userid);
+        // console.log("userid");
+        // console.log(user.userid);
         req.session.user_id = user.userid;
         req.session.user_name = user.firstname;
         res.redirect('/')

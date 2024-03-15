@@ -4,15 +4,15 @@ const db = require("../db/connection")
 
 
 router.get('/', (req, res) => {
-  console.log(req.body,"reqbody");
-  console.log(req.params, "reqparams")
+  // console.log(req.body,"reqbody");
+  // console.log(req.params, "reqparams")
   const templateVars = { user: req.session.user_id, name: req.session.user_name };
-  console.log(req.param, "reqparams");
+  // console.log(req.param, "reqparams");
   res.render('deleteItem', templateVars)
 })
 
 router.post('/', (req, res) => {
-  console.log(req.body,"reqbody");
+  // console.log(req.body,"reqbody");
   
   const productID = req.body.productID;
   const queryString = `
@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
   `;
 
   const values = [productID]
-  console.log(values, "HERE ARE THE VALUES");
+  // console.log(values, "HERE ARE THE VALUES");
   return db.query(queryString, values)
   .then(result => {
     if (result.rowCount === 0) {
