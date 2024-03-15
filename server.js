@@ -47,6 +47,10 @@ const userLogin = require('./routes/login');
 const userRegister = require('./routes/register');
 const userLogout = require('./routes/logout');
 const userFavorite = require('./routes/favorite');
+const newItem = require('./routes/newItem');
+const deleteItem = require('./routes/deleteItem');
+const markSold = require('./routes/markSold');
+const favorite2 = require('./routes/favorite2');
 
 
 // Mount all resource routes
@@ -58,7 +62,11 @@ app.use('/users', usersRoutes);
 app.use('/login', userLogin);
 app.use('/register',userRegister);
 app.use('/logout', userLogout);
-app.use('/favorite',userFavorite);
+app.use('/favorite', userFavorite);
+app.use('/newItem', newItem);
+app.use('/delete', deleteItem);
+app.use('/sold', markSold);
+app.use('/favorite2', favorite2);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -66,9 +74,12 @@ app.use('/favorite',userFavorite);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  console.log(req.session);
-  const templateVars = { user: req.session.userid };
-  const sqlQuery = 'SELECT itemID, title, description, price, status, img_url FROM PRODUCT;';
+  // console.log(req.session, "REQ SESSION");
+  const templateVars = { user: req.session.user_id, name: req.session.user_name };
+
+  console.log(templateVars, req.session);
+  // console.log(templateVars, "TEMPLATE VARSSSS")
+  const sqlQuery = 'SELECT userID, itemID, title, description, price, status, img_url FROM PRODUCT;';
 
   db.query(sqlQuery)
       .then(data => {
@@ -91,7 +102,7 @@ app.post('/', (req, res) => {
 
   db.query(sqlQuery, values)
       .then(data => {
-          res.render('index', { products: data.rows, minPrice, maxPrice });
+        res.render('index', { products: data.rows, minPrice, maxPrice, user: req.session.userid });
       })
       .catch(e => {
           console.log(e);

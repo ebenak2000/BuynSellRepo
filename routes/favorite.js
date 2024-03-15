@@ -2,13 +2,10 @@ const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
 
-/* router.get('/', (req, res, next) => {
-  console.log(req.params.id)
-  res.render('favorite')
-}) */
 
 router.get('/', (req, res, next) => {
-  console.log(req.params.id);
+  
+  const userID = req.session.user_id;
   const sqlQuery = `
     SELECT p.itemID, p.title, p.description, p.price, p.status, p.img_url,
            CASE WHEN p.status THEN 'Available' ELSE 'Not Available' END AS availability
@@ -16,14 +13,13 @@ router.get('/', (req, res, next) => {
     JOIN PRODUCT p ON f.itemID = p.itemID
     WHERE f.userID = $1
     LIMIT 10`;
-  const values = [req.session['user_id']];
-  console.log("values");
-  console.log(values);
+  const values = [userID];
   //values = 1;
   db.query(sqlQuery, values)
   .then(data => {
-    console.log(data);
-    res.render('favorite', { data: data.rows });
+    const templateVars = { user: req.session.userid, data: data.rows, user: userID, name: req.session.user_name }
+    res.render('favorite', templateVars);
+
   })
   .catch(e => {
     console.log(e);
@@ -37,12 +33,3 @@ router.get('/', (req, res, next) => {
 module.exports = router;
 
 
-
-//SELECT p.itemID, p.title, p.description, p.price
-//FROM FAVORITES f
-//JOIN PRODUCT p ON f.itemID = p.itemID
-//WHERE f.userID = [user_id];
-
-
-//INSERT INTO FAVORITES (userID, itemID)
-//VALUES (user_id_value, item_id_value);

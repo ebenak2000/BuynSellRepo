@@ -8,8 +8,6 @@ const getUser = function (user_email, user_password) {
   const sqlValues = [user_email];
   return db.query(sqlQuery, sqlValues)
     .then(data => {
-      console.log("getuseroutput:");
-      console.log(data);
       const user = data.rows[0];
       return user;
     })
@@ -29,20 +27,19 @@ const getUser = function (user_email, user_password) {
 
 
 router.get('/', (req, res, next) => {
-  console.log(req.params.id)
   res.render('login')
 })
 
 router.post('/', (req, res, next) => {
-  console.log("login post");
   const email = req.body.email;
   const password = req.body.password;
   getUser(email, password)
     .then(user => {
       if(user && user.password === password){
-        console.log("userid");
-        console.log(user.userid);
+        // console.log("userid");
+        // console.log(user.userid);
         req.session.user_id = user.userid;
+        req.session.user_name = user.firstname;
         res.redirect('/')
         return;
       }
