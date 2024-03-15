@@ -1,2 +1,45 @@
 
-
+.navbar {
+    font-family: Verdana;
+    font-size: 20px;
+    color: #CDCDCD;
+    li{
+      display: inline;
+  
+      a {
+        color: #CDCDCD;
+        text-decoration: none;
+            padding: 14px 16px;
+        &:hover {
+        text-decoration: underline;
+        }
+      }
+    }
+  }
+  .modal {
+    display: none;
+    position: right;
+    z-index: 1;
+    right: 50;
+    bottom: 0;
+    width: 30%;
+    height: auto;
+    overflow: auto;
+    background-color: #888;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .modal-show {
+    display: block;
+  }
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15px;
+    padding: 20px;
+    border: 1px solid #888;
+    width: auto;
+    height: auto;
+  }
+  header {
+    width: 100%;
+  }

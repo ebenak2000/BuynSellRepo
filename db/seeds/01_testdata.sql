@@ -42,3 +42,8 @@ VALUES (1, 1, 2, 'I would like to purchase this item.', CURRENT_TIMESTAMP),
 INSERT INTO SALES (itemID, sellerID, buyerID, price)
 VALUES (1, 1, 2, 950),
        (3, 2, 3, 12);
+
+-- Widgets table seeds here (Example)
+INSERT INTO widgets (name, user_id) VALUES ('Sprockets', 1);
+INSERT INTO widgets (name, user_id) VALUES ('Chains', 1);
+INSERT INTO widgets (name, user_id) VALUES ('Bearings', 1);

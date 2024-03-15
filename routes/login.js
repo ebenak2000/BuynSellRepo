@@ -20,12 +20,6 @@ const getUser = function (user_email, user_password) {
 
 };
 
-
-
-
-
-
-
 router.get('/', (req, res, next) => {
   res.render('login')
 })

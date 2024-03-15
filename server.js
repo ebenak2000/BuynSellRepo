@@ -1,4 +1,3 @@
-// load .env data into process.env
 require('dotenv').config();
 
 // Web server config
@@ -8,6 +7,8 @@ const morgan = require('morgan');
 const cookieSession = require("cookie-session");
 const db = require('./db/connection');
 const bodyParser = require('body-parser');
+const messageRoutes = require('./routes/messages');
+
 
 
 const PORT = process.env.PORT || 8080;
@@ -53,6 +54,7 @@ const markSold = require('./routes/markSold');
 const favorite2 = require('./routes/favorite2');
 
 
+
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -62,11 +64,15 @@ app.use('/users', usersRoutes);
 app.use('/login', userLogin);
 app.use('/register',userRegister);
 app.use('/logout', userLogout);
+
+app.use('/api/messages', messageRoutes);
+
 app.use('/favorite', userFavorite);
 app.use('/newItem', newItem);
 app.use('/delete', deleteItem);
 app.use('/sold', markSold);
 app.use('/favorite2', favorite2);
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -74,6 +80,7 @@ app.use('/favorite2', favorite2);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
+
   // console.log(req.session, "REQ SESSION");
   const templateVars = { user: req.session.user_id, name: req.session.user_name };
 
@@ -90,6 +97,7 @@ app.get('/', (req, res) => {
           console.log(e);
           res.status(500).send("An error occurred while fetching products.");
       });
+
 });
 
 
@@ -138,8 +146,6 @@ app.post('/add-to-favorites', (req, res) => {
     }
   });
 });
-
-
 
 
 

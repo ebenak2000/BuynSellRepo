@@ -3,6 +3,7 @@
 
 <head>
   <title>Buy/Sell Listing Website</title>
+
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta name="viewport" content="width=device-width, initial-scale=1.0" >
@@ -15,18 +16,64 @@
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
+
+
   <script type = "text/javascript" src="/scripts/addToFavorites.js"></script>
+
 
 </head>
 
 <body>
-<<<<<<< HEAD
-  <%- include('partials/_header') %>
-=======
 
   <%- include('partials/_header') %>
 
->>>>>>> 48e4bfaa1153a71fbe6fa949db212888ffd8b82f
+<div class="container">
+  <h1>Product List</h1>
+  <div>
+    <span id="messagebtn"></span>
+  </div>
+  <form action="/" method="POST">
+    <label for="minPrice">Minimum Price:</label>
+    <input type="number" id="minPrice" name="minPrice" placeholder="Minimum Price">
+
+    <label for="maxPrice">Maximum Price:</label>
+    <input type="number" id="maxPrice" name="maxPrice" placeholder="Maximum Price">
+
+    <button type="submit">Filter</button>
+</form>
+
+  <table>
+    <thead>
+        <tr> 
+            <th>Title</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Image</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% products.forEach(product => { %>
+            <tr>
+                <td><%= product.title %></td>
+                <td><%= product.description %></td>
+                <td><%= product.price %></td>
+                <td><%= product.status ? 'Available' : 'Not Available' %></td>
+                <td><img src="<%= product.img_url %>" alt="<%= product.title %>"></td>
+                <td>
+                  <button class="message-admin-btn" id="<%= product.itemid %>">Message Admin</button>
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+
+    </table>
+</div>
+
+</body>
+
+</html>
 
 <div class="container">
   <h1>Product List</h1>
