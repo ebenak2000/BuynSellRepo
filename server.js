@@ -50,6 +50,7 @@ const userFavorite = require('./routes/favorite');
 const newItem = require('./routes/newItem');
 const deleteItem = require('./routes/deleteItem');
 const markSold = require('./routes/markSold');
+const favorite2 = require('./routes/favorite2');
 
 
 // Mount all resource routes
@@ -65,6 +66,7 @@ app.use('/favorite', userFavorite);
 app.use('/newItem', newItem);
 app.use('/delete', deleteItem);
 app.use('/sold', markSold);
+app.use('/favorite2', favorite2);
 // Note: mount other resources here, using the same pattern above
 
 // Home page

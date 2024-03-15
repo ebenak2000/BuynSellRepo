@@ -54,6 +54,13 @@
                 <td <% if (!product.status) { %> class="sold-out-image" <% } %>>
                   <img src="<%= product.img_url %>" alt="<%= product.title %>" class="product-image">
                 </td>
+                <% if (user) { %>
+                <td><form id="favoriteForm" action="/favorite2" method="POST">
+                  <input type="hidden" name="favorited" value="<%= product.itemid %>">
+                  <button type="submit">❤</button>
+                </form>
+                </td>
+                <% } %>
                 <!--Delete button and sold button should only show for the user that owns the product-->
                 <% if (user === product.userid) { %>
           
