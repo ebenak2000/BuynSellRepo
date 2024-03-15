@@ -45,6 +45,7 @@
     </thead>
     <tbody>
         <% products.forEach(product => { %>
+          <% console.log(product) %>
             <tr <% if (!product.status) { %> class="sold-out" <% } %>>
                 <td><%= product.title %></td>
                 <td><%= product.description %></td>
@@ -52,13 +53,16 @@
                 <td><%= product.status ? 'Available' : 'Not Available' %></td>
                 <td <% if (!product.status) { %> class="sold-out-image" <% } %>>
                   <img src="<%= product.img_url %>" alt="<%= product.title %>" class="product-image">
-                  <!--Delete button-->
                 </td>
+                <!--Delete button and sold button should only show for the user that owns the product-->
+                <% if (user === product.userid) { %>
+          
                 <td><form action="/delete" method="POST">
                   <input type="hidden" name="productID" value="<%= product.itemid %>">
                   <button type="submit">Delete</button>
                 </form>
                 </td>
+                <% } %>
                 <!-- Sold Button -->
                 <td>
                 <% if (product.status) { %>

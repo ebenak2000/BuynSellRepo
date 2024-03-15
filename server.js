@@ -74,8 +74,10 @@ app.use('/sold', markSold);
 app.get('/', (req, res) => {
   // console.log(req.session, "REQ SESSION");
   const templateVars = { user: req.session.user_id, name: req.session.user_name };
+
+  console.log(templateVars, req.session);
   // console.log(templateVars, "TEMPLATE VARSSSS")
-  const sqlQuery = 'SELECT itemID, title, description, price, status, img_url FROM PRODUCT;';
+  const sqlQuery = 'SELECT userID, itemID, title, description, price, status, img_url FROM PRODUCT;';
 
   db.query(sqlQuery)
       .then(data => {
