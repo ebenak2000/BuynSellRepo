@@ -31,10 +31,10 @@
   <div class="formBack">
   <form method="post" action="/newItem">
     <label for="itemTitle">What are you selling?
-    <textarea name="itemTitle" rows=1 required></textarea>
+    <textarea name="itemTitle" class="newForm" rows=1 required></textarea>
   </label>
   <label for="img_url">
-    image url:<textarea name="img_url" rows="1"></textarea>
+    image url:<textarea name="img_url" rows="1" class="newForm"></textarea>
   </label>
     <label for="productType">Choose a category
     <select id="normalize" name="category">
@@ -44,10 +44,10 @@
     </select>
   </label>
     <label for="description">Describe it!
-    <textarea  name="itemDescription" required></textarea>
+    <textarea  name="itemDescription" rows="1" class="newForm" required></textarea>
   </label>
     <label for="price" class="price">Price:
-    <textarea name="price" required></textarea>
+    <textarea name="price" rows="1" class="newFormPrice" required></textarea>
   </label>
     <button type="submit" class="btn btn-primary">Submit</button>
     </form>
