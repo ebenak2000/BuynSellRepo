@@ -17,24 +17,27 @@
   }
   .modal {
     display: none;
-    position: fixed;
+    position: right;
     z-index: 1;
-    left: 100px;
-    top: 0;
-    width: 50%;
-    height: 25%;
+    right: 50;
+    bottom: 0;
+    width: 30%;
+    height: auto;
     overflow: auto;
     background-color: #888;
+    padding: 20px;
+    box-sizing: border-box;
   }
   .modal-show {
     display: block;
   }
   .modal-content {
     background-color: #fefefe;
-    margin: 1% auto;
-    padding: 5px;
+    margin: 15px;
+    padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: auto;
+    height: auto;
   }
   header {
     width: 100%;
