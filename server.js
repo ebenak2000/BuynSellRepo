@@ -112,6 +112,37 @@ app.post('/', (req, res) => {
 
 
 
+
+
+// Route to handle adding an item to favorites
+app.post('/add-to-favorites', (req, res) => {
+  const itemId = req.body.itemId;
+  const userId = req.session.userId;
+
+  // Validate itemId
+  if (!Number.isInteger(itemId)) {
+    console.error('Invalid itemId:', itemId);
+    res.status(400).send('Invalid item ID.');
+    return;
+  }
+
+  // Execute the SQL query to insert the item ID into the FAVORITES table
+  db.query('INSERT INTO FAVORITES (userID, itemID) VALUES ($1, $2)', [userId, itemId], (error, results) => {
+    if (error) {
+      // Handle database insertion error
+      console.error('Error adding item to favorites:', error);
+      res.status(500).send('An error occurred while adding the item to favorites.');
+    } else {
+      // Send a success response back to the client
+      res.send('Item added to favorites successfully.');
+    }
+  });
+});
+
+
+
+
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

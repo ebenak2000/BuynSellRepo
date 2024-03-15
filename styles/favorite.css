@@ -1,0 +1,25 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #96c8b7;
+}
+
+.nav-wrapper {
+  position: relative;
+}
+
+.brand-logo {
+  font-size: 24px;
+}
+
+#nav-mobile li a {
+  font-size: 16px;
+}
+
+#nav-mobile li a.btn {
+  margin-top: 18px;
+}
+
