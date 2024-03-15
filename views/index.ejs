@@ -24,11 +24,11 @@
 <div class="container">
   <h1>Product List</h1>
   <form action="/" method="POST">
-    <label for="minPrice">Minimum Price:</label>
-    <input type="number" id="minPrice" name="minPrice" placeholder="Minimum Price">
+    <label for="minPrice" class="formText">Minimum Price:</label>
+    <input type="number" id="minPrice" name="minPrice" placeholder="Minimum Price" class="formText">
 
-    <label for="maxPrice">Maximum Price:</label>
-    <input type="number" id="maxPrice" name="maxPrice" placeholder="Maximum Price">
+    <label for="maxPrice" class="formText">Maximum Price:</label>
+    <input type="number" id="maxPrice" name="maxPrice" placeholder="Maximum Price" class="formText">
 
     <button type="submit">Filter</button>
 </form>
@@ -51,8 +51,8 @@
                 <td><%= product.price %></td>
                 <td><%= product.status ? 'Available' : 'Not Available' %></td>
                 <td <% if (!product.status) { %> class="sold-out-image" <% } %>>
-                  <img src="<%= product.img_url %>" alt="<%= product.title %>">
-                  
+                  <img src="<%= product.img_url %>" alt="<%= product.title %>" class="product-image">
+                  <!--Delete button-->
                 </td>
                 <td><form action="/delete" method="POST">
                   <input type="hidden" name="productID" value="<%= product.itemid %>">

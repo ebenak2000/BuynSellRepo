@@ -4,6 +4,7 @@ const db = require('../db/connection');
 
 
 router.get('/', (req, res, next) => {
+  
   const userID = req.session.user_id;
   const sqlQuery = `
     SELECT p.itemID, p.title, p.description, p.price, p.status, p.img_url,
@@ -16,7 +17,8 @@ router.get('/', (req, res, next) => {
   //values = 1;
   db.query(sqlQuery, values)
   .then(data => {
-    res.render('favorite', { data: data.rows, user: userID});
+    const templateVars = { user: req.session.userid, data: data.rows, user: userID, name: req.session.user_name }
+    res.render('favorite', templateVars);
 
   })
   .catch(e => {

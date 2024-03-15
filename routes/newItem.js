@@ -6,6 +6,7 @@ const { Template } = require('ejs');
 
 router.get('/', (req, res) => {
   const templateVars = { user: req.session.userid };
+  console.log(templateVars)
   res.render('newItem', templateVars)
 })
 

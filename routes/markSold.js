@@ -16,8 +16,7 @@ router.post('/', (req, res) => {
 
   return db.query(queryString, values)
   .then( result => {
-    console.log(result, "THIS IS RESULTS OF JSON")
-    res.json({success: true})
+    res.redirect('/');
 })
 .catch(error => {
   console.error('Error', error);
