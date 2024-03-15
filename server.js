@@ -61,10 +61,10 @@ app.use('/users', usersRoutes);
 app.use('/login', userLogin);
 app.use('/register',userRegister);
 app.use('/logout', userLogout);
-app.use('/userFavorite', userFavorite);
+app.use('/favorite', userFavorite);
 app.use('/newItem', newItem);
-app.use('/deleteItem', deleteItem);
-app.use('/markSold', markSold);
+app.use('/delete', deleteItem);
+app.use('/sold', markSold);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -72,8 +72,9 @@ app.use('/markSold', markSold);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  console.log(req.session);
-  const templateVars = { user: req.session.userid };
+  console.log(req.session, "REQ SESSION");
+  const templateVars = { user: req.session.user_id, name: req.session.user_name };
+  console.log(templateVars, "TEMPLATE VARSSSS")
   const sqlQuery = 'SELECT itemID, title, description, price, status, img_url FROM PRODUCT;';
 
   db.query(sqlQuery)

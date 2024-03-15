@@ -51,6 +51,20 @@
                 <td><%= product.price %></td>
                 <td><%= product.status ? 'Available' : 'Not Available' %></td>
                 <td><img src="<%= product.img_url %>" alt="<%= product.title %>"></td>
+                <td><form action="/delete" method="POST">
+                  <input type="hidden" name="productID" value="<%= product.itemid %>">
+                  <button type="submit">Delete</button>
+                </form>
+                </td>
+                <!-- Sold Button -->
+                <td>
+                <% if (product.status) { %>
+                  <form action="/sold" method="POST">
+                    <input type="hidden" name="productID" value="<%= product.itemid %>">
+                    <button type="submit">Sold</button>
+                  </form>
+                <% } %>
+                </td>
             </tr>
         <% }); %>
     </tbody>

@@ -1,10 +1,12 @@
 const express = require('express');
 const router  = express.Router();
-const db = require("../db/connection")
+const db = require("../db/connection");
+const { Template } = require('ejs');
 
 
 router.get('/', (req, res) => {
-  res.render('newItem')
+  const templateVars = { user: req.session.userid };
+  res.render('newItem', templateVars)
 })
 
 // router.post('/newListing', (req, res) => {
@@ -32,10 +34,10 @@ router.post('/', (req, res) => {
    `
 
    const values = [req.session.user_id, req.body.category, req.body.itemTitle, req.body.itemDescription, req.body.price, true, req.body.img_url]
+   console.log("BOOTYCHEEKS");
    return db.query(queryString, values)
    .then(res => res.rows)
    .then(res.redirect('/'));
-
 })
 
 

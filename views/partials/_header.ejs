@@ -15,12 +15,15 @@
       <li><a href="/favorite">My Favorites</a></li>
 
       <% if (user) { %>
-        <li>Welcome, <%= user.email %></li>
+        <li>Welcome, <%= name %></li>
         <li><a href="/logout">Logout</a></li>
+        <li><a href="/newItem">Add an item</a></li>
       <% } else { %>
         <li><a href="/login">Login</a></li>
         <li><a href="/register">Register</a></li>
         <li><a href="/logout">Logout</a></li>
+        
+        
       <% } %>
     </ul>
 

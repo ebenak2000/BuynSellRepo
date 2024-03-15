@@ -39,6 +39,7 @@ router.post('/', (req, res, next) => {
         console.log("userid");
         console.log(user.userid);
         req.session.user_id = user.userid;
+        req.session.user_name = user.firstname;
         res.redirect('/')
         return;
       }
