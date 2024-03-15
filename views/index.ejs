@@ -16,6 +16,7 @@
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
+  <script type = "text/javascript" src="/scripts/addToFavorites.js"></script>
 
 </head>
 
@@ -52,6 +53,7 @@
                 <td><%= product.price %></td>
                 <td><%= product.status ? 'Available' : 'Not Available' %></td>
                 <td><img src="<%= product.img_url %>" alt="<%= product.title %>"></td>
+                <button class="add-to-favorites-btn" data-item-id="<%= product.itemID %>">Add to Favorites</button>
             </tr>
         <% }); %>
     </tbody>
