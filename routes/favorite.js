@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
     WHERE f.userID = $1
     LIMIT 10`;
   const values = [userID];
-  //values = 1;
+
   db.query(sqlQuery, values)
   .then(data => {
     res.render('favorite', { data: data.rows, user: userID});

@@ -66,7 +66,7 @@ app.use('/favorite',userFavorite);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  console.log(req.session);
+
   const templateVars = { user: req.session.userid };
   const sqlQuery = 'SELECT itemID, title, description, price, status, img_url FROM PRODUCT;';
 
